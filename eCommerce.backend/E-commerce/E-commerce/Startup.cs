@@ -13,6 +13,9 @@ using System.Threading.Tasks;
 using Data.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Data.EntityModels;
+using Core;
+using Core.Services;
+using Core.Interfaces;
 
 namespace E_commerce
 {
@@ -33,6 +36,9 @@ namespace E_commerce
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentityCore<Account>()
                 .AddEntityFrameworkStores<E_commerceDB>();
+
+            services.AddTransient<ICityService, CityService>();
+            services.AddTransient<IBranchService, BranchService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

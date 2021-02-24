@@ -1,0 +1,12 @@
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\bin\Debug\netcoreapp3.1\Core.deps.json
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\bin\Debug\netcoreapp3.1\Core.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\bin\Debug\netcoreapp3.1\Core.pdb
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\bin\Debug\netcoreapp3.1\Data.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\bin\Debug\netcoreapp3.1\Data.pdb
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.csprojAssemblyReference.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfoInputs.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.AssemblyInfo.cs
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.csproj.CoreCompileInputs.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.csproj.CopyComplete
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Core\obj\Debug\netcoreapp3.1\Core.pdb
