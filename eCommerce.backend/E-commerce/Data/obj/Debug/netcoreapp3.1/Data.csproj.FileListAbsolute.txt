@@ -1,0 +1,24 @@
+C:\Users\Safija\source\repos\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.deps.json
+C:\Users\Safija\source\repos\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.json
+C:\Users\Safija\source\repos\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.dev.json
+C:\Users\Safija\source\repos\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.dll
+C:\Users\Safija\source\repos\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.pdb
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.dll
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.pdb
+C:\Users\Safija\source\repos\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfoInputs.cache
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.AssemblyInfo.cs
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.dll
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.pdb
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.deps.json
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.json
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.runtimeconfig.dev.json
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.dll
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\bin\Debug\netcoreapp3.1\Data.pdb
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache
+C:\Users\Aldin\Desktop\eCommerce customer\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
