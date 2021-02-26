@@ -39,6 +39,19 @@ namespace E_commerce
 
             services.AddTransient<ICityService, CityService>();
             services.AddTransient<IBranchService, BranchService>();
+            services.AddTransient<IBrandCategoryService, BrandCategoryService>();
+            services.AddTransient<ICategoryService, CategoryService>();
+            services.AddTransient<IGenderCategoryService, GenderCategoryService>();
+            services.AddTransient<ISizeService, SizeService>();
+            services.AddTransient<ISubCategoryService, SubCategoryService>();
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Policy",
+                    builder =>
+                    {
+                        builder.WithOrigins("*").AllowAnyHeader().AllowAnyMethod();
+                    });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
