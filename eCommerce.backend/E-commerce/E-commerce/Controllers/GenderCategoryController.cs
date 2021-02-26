@@ -12,11 +12,11 @@ namespace E_commerce.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class GednerCategoryController : ControllerBase
+    public class GenderCategoryController : ControllerBase
     {
-        private readonly ILogger<GednerCategoryController> _logger;
+        private readonly ILogger<GenderCategoryController> _logger;
         private IGenderCategoryService _genderCategoryService;
-        public GednerCategoryController(ILogger<GednerCategoryController> logger, IGenderCategoryService genderCategoryService)
+        public GenderCategoryController(ILogger<GenderCategoryController> logger, IGenderCategoryService genderCategoryService)
         {
             _logger = logger;
             _genderCategoryService = genderCategoryService;

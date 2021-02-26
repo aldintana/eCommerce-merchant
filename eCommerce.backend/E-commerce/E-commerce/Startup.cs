@@ -16,6 +16,7 @@ using Data.EntityModels;
 using Core;
 using Core.Services;
 using Core.Interfaces;
+using Microsoft.AspNetCore.Identity;
 
 namespace E_commerce
 {
@@ -35,6 +36,7 @@ namespace E_commerce
             services.AddDbContext< E_commerceDB > (options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentityCore<Account>()
+                .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<E_commerceDB>();
 
             services.AddTransient<ICityService, CityService>();

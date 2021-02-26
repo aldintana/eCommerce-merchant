@@ -457,7 +457,7 @@
           "System.Runtime": "4.3.0"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Collections.dll": {}
         }
       },
       "System.Collections.Concurrent/4.3.0": {
@@ -927,7 +927,7 @@
           "Microsoft.NETCore.Targets": "1.1.0"
         },
         "compile": {
-          "ref/netstandard1.5/_._": {}
+          "ref/netstandard1.5/System.Runtime.dll": {}
         }
       },
       "System.Runtime.Caching/4.5.0": {
@@ -5173,7 +5173,8 @@
       "Microsoft.EntityFrameworkCore >= 3.1.1",
       "Microsoft.EntityFrameworkCore.Design >= 3.1.1",
       "Microsoft.EntityFrameworkCore.SqlServer >= 3.1.1",
-      "Microsoft.EntityFrameworkCore.Tools >= 3.1.1"
+      "Microsoft.EntityFrameworkCore.Tools >= 3.1.1",
+      "System.Collections >= 4.3.0"
     ]
   },
   "packageFolders": {
@@ -5243,6 +5244,10 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[3.1.1, )"
+          },
+          "System.Collections": {
+            "target": "Package",
+            "version": "[4.3.0, )"
           }
         },
         "imports": [

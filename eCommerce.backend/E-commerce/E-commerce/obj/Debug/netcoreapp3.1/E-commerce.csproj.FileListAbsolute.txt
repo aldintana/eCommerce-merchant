@@ -168,8 +168,6 @@ C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerc
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.csprojAssemblyReference.cache
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.AssemblyInfoInputs.cache
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.AssemblyInfo.cs
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.csproj.CoreCompileInputs.cache
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.RazorTargetAssemblyInfo.cache
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.csproj.CopyComplete
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\staticwebassets\E-commerce.StaticWebAssets.Manifest.cache
@@ -177,3 +175,5 @@ C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerc
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.pdb
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.genruntimeconfig.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.csproj.CoreCompileInputs.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.MvcApplicationPartsAssemblyInfo.cache
