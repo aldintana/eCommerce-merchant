@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Data.EntityModels;
@@ -8,6 +11,8 @@ using Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 
 namespace E_commerce.Controllers
 {
@@ -19,13 +24,15 @@ namespace E_commerce.Controllers
         private RoleManager<IdentityRole> _roleManager;
         private IEmployeeService _employeeService;
         private readonly IEmailSender _emailSender;
+        private IConfiguration _configuration;
         public AccountController(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager,
-            IEmployeeService employeeService, IEmailSender emailSender)
+            IEmployeeService employeeService, IEmailSender emailSender, IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
             _employeeService = employeeService;
             _emailSender = emailSender;
+            _configuration = configuration;
         }
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterVM model)
@@ -68,6 +75,52 @@ namespace E_commerce.Controllers
             }
 
             return BadRequest("Some properties are not valid"); // Status code: 400
+        }
+
+        [HttpPost("Login")]
+        public async Task<IActionResult> LoginAsync([FromBody] LoginVM model)
+        {
+            if (model == null)
+                throw new NullReferenceException("Login model is null");
+            if (ModelState.IsValid)
+            {
+                var user = await _userManager.FindByEmailAsync(model.Email);
+
+                if(user==null)
+                    return BadRequest("User doesn't exist");
+
+                var result = await _userManager.CheckPasswordAsync(user, model.Password);
+
+                if(!result)
+                    return BadRequest("Password is not correct");
+
+                var roles= await _userManager.GetRolesAsync(user);
+                string role="";
+                if (roles.Count != 0)
+                    role = roles[0];
+                var claims = new[]
+                {
+                    new Claim("Email", model.Email),
+                    new Claim("Id", user.Id),
+                    new Claim("Role", role)                 
+                };
+
+                var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
+
+                var token = new JwtSecurityToken
+                    (
+                        issuer: _configuration["AuthSettings:Issuer"],
+                        audience: _configuration["AuthSettings:Audience"],
+                        claims: claims,
+                        expires: DateTime.Now.AddDays(10),
+                        signingCredentials: new SigningCredentials(key, SecurityAlgorithms.HmacSha256)
+                    );
+
+                string tokenAsString = new JwtSecurityTokenHandler().WriteToken(token);
+                return Ok(tokenAsString);
+            }
+
+            return BadRequest("Some properties are not valid"); 
         }
 
         private async Task SendPasswordAsync(string email, string lozinka)

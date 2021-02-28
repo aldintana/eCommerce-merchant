@@ -18,6 +18,9 @@ using Core.Services;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using static Core.Services.EmailSender;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace E_commerce
 {
@@ -40,6 +43,24 @@ namespace E_commerce
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<E_commerceDB>();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+            services.AddAuthentication(auth =>
+            {
+                auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            }).AddJwtBearer(options =>
+            {
+                options.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                {
+                    ValidateIssuer = true,
+                    ValidateAudience = true,
+                    ValidAudience = Configuration["AuthSettings:Audience"],
+                    ValidIssuer = Configuration["AuthSettings:Issuer"],
+                    RequireExpirationTime = true,
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["AuthSettings:Key"])),
+                    ValidateIssuerSigningKey = true
+                };
+            });
 
 
             services.AddTransient<ICityService, CityService>();
