@@ -17,6 +17,7 @@ using Core;
 using Core.Services;
 using Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using static Core.Services.EmailSender;
 
 namespace E_commerce
 {
@@ -38,6 +39,8 @@ namespace E_commerce
             services.AddIdentityCore<Account>()
                 .AddRoles<IdentityRole>()
                 .AddEntityFrameworkStores<E_commerceDB>();
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
 
             services.AddTransient<ICityService, CityService>();
             services.AddTransient<IBranchService, BranchService>();
@@ -47,6 +50,7 @@ namespace E_commerce
             services.AddTransient<ISizeService, SizeService>();
             services.AddTransient<ISubCategoryService, SubCategoryService>();
             services.AddTransient<IEmployeeService, EmployeeService>();
+            services.AddTransient<IEmailSender, EmailSender>();
             services.AddCors(options =>
             {
                 options.AddPolicy("Policy",
@@ -66,7 +70,7 @@ namespace E_commerce
             }
 
             app.UseHttpsRedirection();
-
+            app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
 
