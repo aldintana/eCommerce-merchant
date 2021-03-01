@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Data.EntityModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -12,6 +13,7 @@ namespace E_commerce.Controllers
 {
     [Route("[controller]")]
     [ApiController]
+    [Authorize( Roles = "Warehouseman")]
     public class BranchController : ControllerBase
     {
         private readonly ILogger<BranchController> _logger;
@@ -36,7 +38,7 @@ namespace E_commerce.Controllers
         public IActionResult Create(Branch branch)
         {
             var newBranch = _branchService.AddBranch(branch);
-            return CreatedAtRoute("GetBranchById", new { id = newBranch.BranchID }, newBranch);
+            return CreatedAtRoute("GetBranchById", new { id = newBranch.ID }, newBranch);
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

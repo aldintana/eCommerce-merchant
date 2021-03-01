@@ -24,14 +24,14 @@ namespace Core.Services
 
         public void DeleteGenderCategory(int id)
         {
-            var genderCategory = _context.GenderCategory.First(x => x.GenderCategoryID == id);
+            var genderCategory = _context.GenderCategory.First(x => x.ID == id);
             _context.GenderCategory.Remove(genderCategory);
             _context.SaveChanges();
         }
 
         public void EditGenderCategory(GenderCategory genderCategory)
         {
-            var editedGenderCategory = _context.GenderCategory.First(x => x.GenderCategoryID == genderCategory.GenderCategoryID);
+            var editedGenderCategory = _context.GenderCategory.First(x => x.ID == genderCategory.ID);
             editedGenderCategory.Name = genderCategory.Name;
             _context.Entry(editedGenderCategory).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
@@ -44,7 +44,7 @@ namespace Core.Services
 
         public GenderCategory GetGenderCategory(int id)
         {
-            return _context.GenderCategory.First(x => x.GenderCategoryID == id);
+            return _context.GenderCategory.First(x => x.ID == id);
         }
     }
 }

@@ -38,7 +38,7 @@ namespace E_commerce.Controllers
         public IActionResult Create(BrandCategory brandCategory)
         {
             var newBrand = _brandCategoryService.AddBrandCategory(brandCategory);
-            return CreatedAtRoute("GetBrandById", new { id = newBrand.BrandCategoryID }, newBrand);
+            return CreatedAtRoute("GetBrandById", new { id = newBrand.ID }, newBrand);
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

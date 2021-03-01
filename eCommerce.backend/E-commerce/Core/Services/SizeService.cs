@@ -24,14 +24,14 @@ namespace Core.Services
 
         public void DeleteSize(int id)
         {
-            Size size = _context.Size.First(x => x.SizeID == id);
+            Size size = _context.Size.First(x => x.ID == id);
             _context.Size.Remove(size);
             _context.SaveChanges();
         }
 
         public void EditSize(Size size)
         {
-            var editedSize = _context.Size.First(x => x.SizeID == size.SizeID);
+            var editedSize = _context.Size.First(x => x.ID == size.ID);
             editedSize.Name = size.Name;
             _context.Entry(editedSize).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
@@ -44,7 +44,7 @@ namespace Core.Services
 
         public Size GetSize(int id)
         {
-            return _context.Size.First(x => x.SizeID == id);
+            return _context.Size.First(x => x.ID == id);
         }
     }
 }

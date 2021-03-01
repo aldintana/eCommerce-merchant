@@ -37,7 +37,7 @@ namespace E_commerce.Controllers
         public IActionResult Create(City city)
         {
             var newCity = _cityService.AddCity(city);
-            return CreatedAtRoute("GetById", new { id = newCity.CityID }, newCity);
+            return CreatedAtRoute("GetById", new { id = newCity.ID }, newCity);
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

@@ -23,14 +23,14 @@ namespace Core.Services
 
         public void DeleteCity(int id)
         {
-            City city = _context.City.First(x => x.CityID == id);
+            City city = _context.City.First(x => x.ID == id);
             _context.City.Remove(city);
             _context.SaveChanges();
         }
 
         public void EditCity(City city)
         {
-            var editedCity = _context.City.First(x => x.CityID == city.CityID);
+            var editedCity = _context.City.First(x => x.ID == city.ID);
             editedCity.Name = city.Name;
             editedCity.PostalCode = city.PostalCode;
             _context.Entry(editedCity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
@@ -44,7 +44,7 @@ namespace Core.Services
 
         public City GetCity(int id)
         {
-            return _context.City.First(x => x.CityID == id);
+            return _context.City.First(x => x.ID == id);
         }
     }
 }

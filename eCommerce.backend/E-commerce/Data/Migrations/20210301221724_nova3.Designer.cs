@@ -4,14 +4,16 @@ using Data.DbContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Data.Migrations
 {
     [DbContext(typeof(E_commerceDB))]
-    partial class E_commerceDBModelSnapshot : ModelSnapshot
+    [Migration("20210301221724_nova3")]
+    partial class nova3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -344,7 +346,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.EntityModels.ItemCostHistory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ItemCostHistoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -361,7 +363,7 @@ namespace Data.Migrations
                     b.Property<float>("PreviousPrice")
                         .HasColumnType("real");
 
-                    b.HasKey("ID");
+                    b.HasKey("ItemCostHistoryID");
 
                     b.HasIndex("ItemID");
 
@@ -370,7 +372,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.EntityModels.ItemSize", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("ItemSizeID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -381,7 +383,7 @@ namespace Data.Migrations
                     b.Property<int>("SizeID")
                         .HasColumnType("int");
 
-                    b.HasKey("ID");
+                    b.HasKey("ItemSizeID");
 
                     b.HasIndex("ItemID");
 
@@ -542,7 +544,7 @@ namespace Data.Migrations
 
             modelBuilder.Entity("Data.EntityModels.SubCategory", b =>
                 {
-                    b.Property<int>("ID")
+                    b.Property<int>("SubCategoryID")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
@@ -553,7 +555,7 @@ namespace Data.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("ID");
+                    b.HasKey("SubCategoryID");
 
                     b.HasIndex("CategoryID");
 

@@ -24,14 +24,14 @@ namespace Core.Services
 
         public void DeleteCategory(int id)
         {
-            var category = _context.Category.First(x => x.CategoryID == id);
+            var category = _context.Category.First(x => x.ID == id);
             _context.Category.Remove(category);
             _context.SaveChanges();
         }
 
         public void EditCategory(Category category)
         {
-            var editedCategory = _context.Category.First(x => x.CategoryID == category.CategoryID);
+            var editedCategory = _context.Category.First(x => x.ID == category.ID);
             editedCategory.Name = category.Name;
             _context.Entry(editedCategory).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
@@ -44,7 +44,7 @@ namespace Core.Services
 
         public Category GetCategory(int id)
         {
-            return _context.Category.First(x => x.CategoryID == id);
+            return _context.Category.First(x => x.ID == id);
         }
     }
 }

@@ -36,7 +36,7 @@ namespace E_commerce.Controllers
         public IActionResult Create(GenderCategory genderCategory)
         {
             var newGender = _genderCategoryService.AddGenderCategory(genderCategory);
-            return CreatedAtRoute("GetGenderById", new { id = newGender.GenderCategoryID }, newGender);
+            return CreatedAtRoute("GetGenderById", new { id = newGender.ID }, newGender);
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

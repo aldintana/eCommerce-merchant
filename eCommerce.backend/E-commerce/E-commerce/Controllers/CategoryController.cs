@@ -36,7 +36,7 @@ namespace E_commerce.Controllers
         public IActionResult Create(Category category)
         {
             var newCategory = _categoryService.AddCategory(category);
-            return CreatedAtRoute("GetCategoryById", new { id = newCategory.CategoryID }, newCategory);
+            return CreatedAtRoute("GetCategoryById", new { id = newCategory.ID }, newCategory);
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

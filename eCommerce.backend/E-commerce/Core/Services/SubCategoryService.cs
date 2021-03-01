@@ -24,14 +24,14 @@ namespace Core.Services
 
         public void DeleteSubCategory(int id)
         {
-            var subCategory = _context.SubCategory.First(x => x.SubCategoryID == id);
+            var subCategory = _context.SubCategory.First(x => x.ID == id);
             _context.SubCategory.Remove(subCategory);
             _context.SaveChanges();
         }
 
         public void EditSubCategory(SubCategory subCategory)
         {
-            var editedSubCategory = _context.SubCategory.First(x => x.SubCategoryID == subCategory.SubCategoryID);
+            var editedSubCategory = _context.SubCategory.First(x => x.ID == subCategory.ID);
             editedSubCategory.Name = subCategory.Name;
             editedSubCategory.CategoryID = subCategory.CategoryID;       
             _context.Entry(editedSubCategory).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
@@ -45,7 +45,7 @@ namespace Core.Services
 
         public SubCategory GetSubCategory(int id)
         {
-            return _context.SubCategory.First(x => x.SubCategoryID == id);
+            return _context.SubCategory.First(x => x.ID == id);
         }
     }
 }

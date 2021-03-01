@@ -24,14 +24,14 @@ namespace Core.Services
 
         public void DeleteBranch(int id)
         {
-            var branch = _context.Branch.First(x => x.BranchID == id);
+            var branch = _context.Branch.First(x => x.ID == id);
             _context.Branch.Remove(branch);
             _context.SaveChanges();
         }
 
         public void EditBranch(Branch branch)
         {
-            var editedBranch = _context.Branch.First(x => x.BranchID == branch.BranchID);
+            var editedBranch = _context.Branch.First(x => x.ID == branch.ID);
             editedBranch.CityId = branch.CityId;
             editedBranch.Adress = branch.Adress;
             editedBranch.Description = branch.Description;
@@ -49,7 +49,7 @@ namespace Core.Services
 
         public Branch GetBranch(int id)
         {
-            return _context.Branch.First(x => x.BranchID == id);
+            return _context.Branch.First(x => x.ID == id);
         }
     }
 }

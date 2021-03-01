@@ -24,14 +24,14 @@ namespace Core.Services
 
         public void DeleteBrandCategory(int id)
         {
-            var brandCategory = _context.BrandCategory.First(x => x.BrandCategoryID == id);
+            var brandCategory = _context.BrandCategory.First(x => x.ID == id);
             _context.BrandCategory.Remove(brandCategory);
             _context.SaveChanges();
         }
 
         public void EditBrandCategory(BrandCategory brandCategory)
         {
-            var editedBrandCategory = _context.BrandCategory.First(x => x.BrandCategoryID == brandCategory.BrandCategoryID);
+            var editedBrandCategory = _context.BrandCategory.First(x => x.ID == brandCategory.ID);
             editedBrandCategory.Name = brandCategory.Name;
             _context.Entry(editedBrandCategory).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
@@ -44,7 +44,7 @@ namespace Core.Services
 
         public BrandCategory GetBrandCategory(int id)
         {
-            return _context.BrandCategory.First(x => x.BrandCategoryID == id);
+            return _context.BrandCategory.First(x => x.ID == id);
         }
     }
 }

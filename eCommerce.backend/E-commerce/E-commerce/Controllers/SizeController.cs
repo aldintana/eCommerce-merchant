@@ -36,7 +36,7 @@ namespace E_commerce.Controllers
         public IActionResult Create(Size size)
         {
             var newSize = _sizeService.AddSize(size);
-            return CreatedAtRoute("GetSizeById", new { id = newSize.SizeID }, newSize);
+            return CreatedAtRoute("GetSizeById", new { id = newSize.ID }, newSize);
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)

@@ -102,7 +102,7 @@ namespace E_commerce.Controllers
                 {
                     new Claim("Email", model.Email),
                     new Claim("Id", user.Id),
-                    new Claim("Role", role)                 
+                    new Claim(ClaimTypes.Role, role)                 
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
