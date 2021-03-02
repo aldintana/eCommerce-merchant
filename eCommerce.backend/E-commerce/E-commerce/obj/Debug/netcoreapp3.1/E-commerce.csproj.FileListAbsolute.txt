@@ -125,8 +125,6 @@ C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerc
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\E-commerce.runtimeconfig.dev.json
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\E-commerce.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\E-commerce.pdb
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Bcl.AsyncInterfaces.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Bcl.HashCode.dll
@@ -143,8 +141,6 @@ C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerc
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Configuration.Binder.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyInjection.Abstractions.dll
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Logging.Abstractions.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Options.dll

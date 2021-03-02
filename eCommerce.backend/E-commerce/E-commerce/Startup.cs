@@ -39,11 +39,9 @@ namespace E_commerce
             services.AddControllers();
             services.AddDbContext< E_commerceDB > (options =>
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
-            services.AddIdentityCore<Account>()
-                .AddRoles<IdentityRole>()
+            services.AddIdentity<Account, IdentityRole>()
                 .AddEntityFrameworkStores<E_commerceDB>();
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
-
             services.AddAuthentication(auth =>
             {
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -72,6 +70,9 @@ namespace E_commerce
             services.AddTransient<ISubCategoryService, SubCategoryService>();
             services.AddTransient<IEmployeeService, EmployeeService>();
             services.AddTransient<IEmailSender, EmailSender>();
+            services.AddTransient<IItemService, ItemService>();
+            services.AddTransient<IItemCostHistoryService, ItemCostHistoryService>();
+            services.AddTransient<IGenderSubCategoryService, GenderSubCategoryService>();
             services.AddCors(options =>
             {
                 options.AddPolicy("Policy",

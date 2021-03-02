@@ -23,9 +23,11 @@ namespace Data.DbContext
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<GenderCategory> GenderCategory { get; set; }
+        public DbSet<GenderSubCategory> GenderSubCategory { get; set; }
         public DbSet<HistoryOfPayments> HistoryOfPayments { get; set; }
         public DbSet<Inventory> Inventory { get; set; }
         public DbSet<Item> Item { get; set; }
+        public DbSet<ItemImage> ItemImage { get; set; }
         public DbSet<ItemCostHistory> ItemCostHistory { get; set; }
         public DbSet<ItemSize> ItemSize { get; set; }
         public DbSet<Order> Order { get; set; }

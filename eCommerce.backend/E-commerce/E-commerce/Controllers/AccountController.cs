@@ -22,14 +22,17 @@ namespace E_commerce.Controllers
     {
         private UserManager<Account> _userManager;
         private RoleManager<IdentityRole> _roleManager;
+        private SignInManager<Account> _signInManager;
         private IEmployeeService _employeeService;
         private readonly IEmailSender _emailSender;
         private IConfiguration _configuration;
         public AccountController(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager,
-            IEmployeeService employeeService, IEmailSender emailSender, IConfiguration configuration)
+            SignInManager<Account> signInManager, IEmployeeService employeeService, IEmailSender emailSender, 
+            IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
+            _signInManager = signInManager;
             _employeeService = employeeService;
             _emailSender = emailSender;
             _configuration = configuration;
@@ -94,6 +97,7 @@ namespace E_commerce.Controllers
                 if(!result)
                     return BadRequest("Password is not correct");
 
+                //var loginresult = _signInManager.PasswordSignInAsync(user.UserName, model.Password, false, false);
                 var roles= await _userManager.GetRolesAsync(user);
                 string role="";
                 if (roles.Count != 0)
@@ -122,6 +126,12 @@ namespace E_commerce.Controllers
 
             return BadRequest("Some properties are not valid"); 
         }
+        //[HttpPost("Logout")]
+        //public async Task<IActionResult> LogoutAsync()
+        //{            
+        //    await _signInManager.SignOutAsync();
+        //    return Ok("User logged out");
+        //}
 
         private async Task SendPasswordAsync(string email, string lozinka)
         {

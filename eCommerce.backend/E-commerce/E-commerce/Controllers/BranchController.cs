@@ -13,7 +13,6 @@ namespace E_commerce.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize( Roles = "Warehouseman")]
     public class BranchController : ControllerBase
     {
         private readonly ILogger<BranchController> _logger;

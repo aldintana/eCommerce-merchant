@@ -13,7 +13,7 @@ namespace E_commerce.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    [Authorize]
+
     public class BrandCategoryController : ControllerBase
     {
         private readonly ILogger<BrandCategoryController> _logger;

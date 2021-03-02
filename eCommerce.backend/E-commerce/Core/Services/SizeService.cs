@@ -33,6 +33,7 @@ namespace Core.Services
         {
             var editedSize = _context.Size.First(x => x.ID == size.ID);
             editedSize.Name = size.Name;
+            editedSize.CategoryID = size.CategoryID;
             _context.Entry(editedSize).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }

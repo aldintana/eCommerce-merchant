@@ -11,15 +11,39 @@ namespace Core.Services
     public class SubCategoryService : ISubCategoryService
     {
         private E_commerceDB _context;
-        public SubCategoryService(E_commerceDB context)
+        private IGenderCategoryService _genderCategoryService;
+        private IGenderSubCategoryService _genderSubCategoryService;
+        public SubCategoryService(E_commerceDB context, 
+            IGenderCategoryService genderCategoryService, IGenderSubCategoryService genderSubCategoryService)
         {
             _context = context;
+            _genderCategoryService = genderCategoryService;
+            _genderSubCategoryService = genderSubCategoryService;
         }
         public SubCategory AddSubCategory(SubCategory subCategory)
         {
-            _context.SubCategory.Add(subCategory);
-            _context.SaveChanges();
-            return subCategory;
+            try
+            {
+                _context.SubCategory.Add(subCategory);
+                _context.SaveChanges();
+                var list = _genderCategoryService.GetAll();
+                foreach (var x in list)
+                {
+                    GenderSubCategory genderSubCategory = new GenderSubCategory
+                    {
+                        GenderCategoryID = x.ID,
+                        SubCategoryID = subCategory.ID
+                    };
+                    _genderSubCategoryService.AddGenderSubCategory(genderSubCategory);
+                }
+                return subCategory;
+            }
+            catch (Exception ex)
+            {
+
+                throw ex;
+            }
+            
         }
 
         public void DeleteSubCategory(int id)
