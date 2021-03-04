@@ -77,6 +77,7 @@ namespace E_commerce
             services.AddTransient<IItemService, ItemService>();
             services.AddTransient<IItemCostHistoryService, ItemCostHistoryService>();
             services.AddTransient<IGenderSubCategoryService, GenderSubCategoryService>();
+            services.AddTransient<IItemImageService, ItemImageService>();
             services.AddCors(options =>
             {
                 options.AddPolicy("Policy",

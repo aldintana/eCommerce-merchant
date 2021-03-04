@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Data.EntityModels;
+using Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -16,10 +17,13 @@ namespace E_commerce.Controllers
     {
         private readonly ILogger<ItemController> _logger;
         private IItemService _itemService;
-        public ItemController(ILogger<ItemController> logger, IItemService itemService)
+        private IItemImageService _itemImageService;
+        public ItemController(ILogger<ItemController> logger, IItemService itemService,
+            IItemImageService itemImageService)
         {
             _logger = logger;
             _itemService = itemService;
+            _itemImageService = itemImageService;
         }
         [HttpGet]
         public IActionResult Get()
@@ -42,11 +46,22 @@ namespace E_commerce.Controllers
            
         }
         [HttpPost]
-        public IActionResult Create(Item item)
+        public IActionResult Create(ItemVM itemVM)
         {
             try
             {
+                if(itemVM.Image.Length<=0)
+                    return BadRequest("Image is null");
+                var item = new Item
+                {
+                    BrandCategoryID=itemVM.BrandCategoryID,
+                    GenderSubCategoryID=itemVM.GenderSubCategoryID,
+                    Description=itemVM.Description,
+                    Price=itemVM.Price,
+                    Name=itemVM.Name
+                };
                 var newItem = _itemService.AddItem(item);
+                var newItemImage = _itemImageService.Add(itemVM.Image, newItem.ID);
                 return CreatedAtRoute("GetItemById", new { id = newItem.ID }, newItem);
             }
             catch (Exception ex)
