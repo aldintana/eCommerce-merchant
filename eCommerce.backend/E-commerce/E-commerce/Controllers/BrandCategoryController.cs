@@ -26,31 +26,66 @@ namespace E_commerce.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_brandCategoryService.GetAll());
+            try
+            {
+                return Ok(_brandCategoryService.GetAll());
+            }
+            catch (Exception)
+            {
+                return BadRequest("Brand not found");
+            }
         }
 
         [HttpGet("{id}", Name = "GetBrandById")]
         public IActionResult GetById(int id)
         {
-            return Ok(_brandCategoryService.GetBrandCategory(id));
+            try
+            {
+                return Ok(_brandCategoryService.GetBrandCategory(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Brand not found");
+            }
         }
         [HttpPost]
         public IActionResult Create(BrandCategory brandCategory)
         {
-            var newBrand = _brandCategoryService.AddBrandCategory(brandCategory);
-            return CreatedAtRoute("GetBrandById", new { id = newBrand.ID }, newBrand);
+            try
+            {
+                var newBrand = _brandCategoryService.AddBrandCategory(brandCategory);
+                return CreatedAtRoute("GetBrandById", new { id = newBrand.ID }, newBrand);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Brand not found");
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _brandCategoryService.DeleteBrandCategory(id);
-            return Ok();
+            try
+            {
+                _brandCategoryService.DeleteBrandCategory(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Brand not found");
+            }
         }
         [HttpPut]
         public IActionResult Update([FromBody] BrandCategory brandCategory)
         {
-            _brandCategoryService.EditBrandCategory(brandCategory);
-            return Ok();
+            try
+            {
+                _brandCategoryService.EditBrandCategory(brandCategory);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Brand not found");
+            }
         }
     }
 }

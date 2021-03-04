@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Data.DbContext;
 using Data.EntityModels;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -19,8 +20,21 @@ namespace Core.Services
         }
         public Item AddItem(Item item)
         {
+            item.SerialNumber = new Random().Next(10000, 99999).ToString();
             _context.Item.Add(item);
             _context.SaveChanges();
+            var newItem = _context.Item.Include(x => x.GenderSubCategory).ThenInclude(x => x.SubCategory)
+                .First(x=>x.ID==item.ID);
+            var list = _context.Size.Where(x => x.CategoryID == newItem.GenderSubCategory.SubCategory.CategoryID).ToList();
+            foreach (var x in list)
+            {
+                _context.ItemSize.Add(new ItemSize
+                {
+                    ItemID = item.ID,
+                    SizeID = x.ID
+                });
+                _context.SaveChanges();
+            }
             return item;
         }
 
@@ -47,12 +61,9 @@ namespace Core.Services
                 _itemCostHistoryService.Add(itemCostHistory);
                 editedItem.Price = item.Price;
             }
-            
-            editedItem.SerialNumber = item.SerialNumber;
             editedItem.Description = item.Description;
             editedItem.BrandCategoryID = item.BrandCategoryID;
             editedItem.GenderSubCategoryID = item.GenderSubCategoryID;
-           
             _context.Entry(editedItem).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
             _context.SaveChanges();
         }

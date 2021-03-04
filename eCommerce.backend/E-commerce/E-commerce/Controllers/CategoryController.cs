@@ -24,31 +24,66 @@ namespace E_commerce.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_categoryService.GetAll());
+            try
+            {
+                return Ok(_categoryService.GetAll());
+            }
+            catch (Exception)
+            {
+                return BadRequest("Category not found");
+            }
         }
 
         [HttpGet("{id}", Name = "GetCategoryById")]
         public IActionResult GetById(int id)
         {
-            return Ok(_categoryService.GetCategory(id));
+            try
+            {
+                return Ok(_categoryService.GetCategory(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Category not found");
+            }
         }
         [HttpPost]
         public IActionResult Create(Category category)
         {
-            var newCategory = _categoryService.AddCategory(category);
-            return CreatedAtRoute("GetCategoryById", new { id = newCategory.ID }, newCategory);
+            try
+            {
+                var newCategory = _categoryService.AddCategory(category);
+                return CreatedAtRoute("GetCategoryById", new { id = newCategory.ID }, newCategory);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Category not found");
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _categoryService.DeleteCategory(id);
-            return Ok();
+            try
+            {
+                _categoryService.DeleteCategory(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Category not found");
+            }
         }
         [HttpPut]
         public IActionResult Update([FromBody] Category category)
         {
-            _categoryService.EditCategory(category);
-            return Ok();
+            try
+            {
+                _categoryService.EditCategory(category);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Category not found");
+            }
         }
     }
 }

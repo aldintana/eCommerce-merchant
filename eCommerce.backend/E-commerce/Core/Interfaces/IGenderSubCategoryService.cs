@@ -1,4 +1,5 @@
 ﻿using Data.EntityModels;
+using Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -9,7 +10,7 @@ namespace Core.Interfaces
     {
         GenderSubCategory AddGenderSubCategory(GenderSubCategory genderSubCategory);
         GenderSubCategory GetGenderSubCategory(int id);
-        List<GenderSubCategory> GetAll();
+        List<GenderSubCategoryViewModel> GetAll();
         void DeleteGenderSubCategory(int id);
         void EditGenderSubCategory(GenderSubCategory genderSubCategory);
     }

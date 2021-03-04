@@ -24,31 +24,67 @@ namespace E_commerce.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_sizeService.GetAll());
+            try
+            {
+                return Ok(_sizeService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Size not found");
+            }
         }
 
         [HttpGet("{id}", Name = "GetSizeById")]
         public IActionResult GetById(int id)
         {
-            return Ok(_sizeService.GetSize(id));
+            try
+            {
+                return Ok(_sizeService.GetSize(id));
+            }
+            catch (Exception ex)
+            {
+
+                return BadRequest("Size not found");
+            }
         }
         [HttpPost]
         public IActionResult Create(Size size)
         {
-            var newSize = _sizeService.AddSize(size);
-            return CreatedAtRoute("GetSizeById", new { id = newSize.ID }, newSize);
+            try
+            {
+                var newSize = _sizeService.AddSize(size);
+                return CreatedAtRoute("GetSizeById", new { id = newSize.ID }, newSize);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Size is null");
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _sizeService.DeleteSize(id);
-            return Ok();
+            try
+            {
+                _sizeService.DeleteSize(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Size not found");
+            }
         }
         [HttpPut]
         public IActionResult Update([FromBody] Size size)
         {
-            _sizeService.EditSize(size);
-            return Ok();
+            try
+            {
+                _sizeService.EditSize(size);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Size not found");
+            }
         }
     }
 }

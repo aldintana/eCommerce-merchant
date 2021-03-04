@@ -41,7 +41,11 @@ namespace E_commerce
             options.UseSqlServer(Configuration.GetConnectionString("IdentityConnection")));
             services.AddIdentity<Account, IdentityRole>()
                 .AddEntityFrameworkStores<E_commerceDB>();
+
+
             services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
+
+
             services.AddAuthentication(auth =>
             {
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;

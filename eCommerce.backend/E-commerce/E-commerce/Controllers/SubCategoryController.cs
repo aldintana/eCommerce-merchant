@@ -24,31 +24,67 @@ namespace E_commerce.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_subCategoryService.GetAll());
+            try
+            {
+                return Ok(_subCategoryService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Subcategory not found");
+            }
         }
 
         [HttpGet("{id}", Name = "GetSubCategoryById")]
         public IActionResult GetById(int id)
         {
-            return Ok(_subCategoryService.GetSubCategory(id));
+            try
+            {
+                return Ok(_subCategoryService.GetSubCategory(id));
+            }
+            catch (Exception)
+            {
+
+                return BadRequest("Subcategory not found");
+            }
         }
         [HttpPost]
         public IActionResult Create(SubCategory subCategory)
         {
-            var newSubCategory = _subCategoryService.AddSubCategory(subCategory);
-            return CreatedAtRoute("GetSubCategoryById", new { id = newSubCategory.ID }, newSubCategory);
+            try
+            {
+                var newSubCategory = _subCategoryService.AddSubCategory(subCategory);
+                return CreatedAtRoute("GetSubCategoryById", new { id = newSubCategory.ID }, newSubCategory);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Value is null");
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _subCategoryService.DeleteSubCategory(id);
-            return Ok();
+            try
+            {
+                _subCategoryService.DeleteSubCategory(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Subcategory not found");
+            }
         }
         [HttpPut]
         public IActionResult Update([FromBody] SubCategory subCategory)
         {
-            _subCategoryService.EditSubCategory(subCategory);
-            return Ok();
+            try
+            {
+                _subCategoryService.EditSubCategory(subCategory);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Subcategory not found");
+            }
         }
     }
 }

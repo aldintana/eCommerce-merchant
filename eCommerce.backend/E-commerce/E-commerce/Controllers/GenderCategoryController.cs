@@ -24,31 +24,66 @@ namespace E_commerce.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_genderCategoryService.GetAll());
+            try
+            {
+                return Ok(_genderCategoryService.GetAll());
+            }
+            catch (Exception)
+            {
+                return BadRequest("Gender not found");
+            }
         }
 
         [HttpGet("{id}", Name = "GetGenderById")]
         public IActionResult GetById(int id)
         {
-            return Ok(_genderCategoryService.GetGenderCategory(id));
+            try
+            {
+                return Ok(_genderCategoryService.GetGenderCategory(id));
+            }
+            catch (Exception)
+            {
+                return BadRequest("Gender not found");
+            }
         }
         [HttpPost]
         public IActionResult Create(GenderCategory genderCategory)
         {
-            var newGender = _genderCategoryService.AddGenderCategory(genderCategory);
-            return CreatedAtRoute("GetGenderById", new { id = newGender.ID }, newGender);
+            try
+            {
+                var newGender = _genderCategoryService.AddGenderCategory(genderCategory);
+                return CreatedAtRoute("GetGenderById", new { id = newGender.ID }, newGender);
+            }
+            catch (Exception)
+            {
+                return BadRequest("Value is null");
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _genderCategoryService.DeleteGenderCategory(id);
-            return Ok();
+            try
+            {
+                _genderCategoryService.DeleteGenderCategory(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Gender not found");
+            }
         }
         [HttpPut]
         public IActionResult Update([FromBody] GenderCategory genderCategory)
         {
-            _genderCategoryService.EditGenderCategory(genderCategory);
-            return Ok();
+            try
+            {
+                _genderCategoryService.EditGenderCategory(genderCategory);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("Gender not found");
+            }
         }
     }
 }

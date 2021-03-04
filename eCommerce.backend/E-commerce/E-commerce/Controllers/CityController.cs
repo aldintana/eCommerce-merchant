@@ -25,31 +25,66 @@ namespace E_commerce.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            return Ok(_cityService.GetAll());
+            try
+            {
+                return Ok(_cityService.GetAll());
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("City not found");
+            }
         }
 
         [HttpGet("{id}", Name = "GetById")]
         public IActionResult GetById(int id)
         {
-            return Ok(_cityService.GetCity(id));
+            try
+            {
+                return Ok(_cityService.GetCity(id));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("City not found");
+            }
         }
         [HttpPost]
         public IActionResult Create(City city)
         {
-            var newCity = _cityService.AddCity(city);
-            return CreatedAtRoute("GetById", new { id = newCity.ID }, newCity);
+            try
+            {
+                var newCity = _cityService.AddCity(city);
+                return CreatedAtRoute("GetById", new { id = newCity.ID }, newCity);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("City not found");
+            }
         }
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
-            _cityService.DeleteCity(id);
-            return Ok();
+            try
+            {
+                _cityService.DeleteCity(id);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("City not found");
+            }
         }
         [HttpPut]
         public IActionResult Update([FromBody] City city)
         {
-            _cityService.EditCity(city);
-            return Ok();
+            try
+            {
+                _cityService.EditCity(city);
+                return Ok();
+            }
+            catch (Exception)
+            {
+                return BadRequest("City not found");
+            }
         }
     }
 }
