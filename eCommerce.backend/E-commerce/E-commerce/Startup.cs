@@ -100,6 +100,7 @@ namespace E_commerce
             app.UseStaticFiles();
             app.UseRouting();
             app.UseAuthentication();
+            app.UseCors("Policy");
 
             app.UseAuthorization();
 

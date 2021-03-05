@@ -46,7 +46,7 @@ namespace E_commerce.Controllers
            
         }
         [HttpPost]
-        public IActionResult Create(ItemVM itemVM)
+        public IActionResult Create([FromForm]ItemVM itemVM)
         {
             try
             {
@@ -68,7 +68,7 @@ namespace E_commerce.Controllers
             {
                 return BadRequest("Item is null");
             }
-        }
+        }        
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
@@ -96,6 +96,67 @@ namespace E_commerce.Controllers
 
                 return BadRequest("Item not found");
             }
+        }
+
+
+        //itemImage part
+
+        [HttpPost("Image")]
+        public IActionResult Add(ItemImageVM itemImageVM)
+        {
+            try
+            {
+                if (itemImageVM.Image.Length <= 0)
+                    return BadRequest("Image is null");
+                var newItemImage = _itemImageService.Add(itemImageVM.Image, itemImageVM.ItemID);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Item is null");
+            }
+        }
+        //lista slika
+        [HttpGet("Images/{id}")]
+        public IActionResult GetImages(int id)
+        {
+            try
+            {
+                List<ItemImage> list = _itemImageService.GetAll(id);
+                if (list.Count == 0)
+                    return BadRequest("Item is null");
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Item is null");
+            }
+        }
+
+        //slika
+        [HttpGet("Image/{id}")]
+        public IActionResult GetItemImage(int id)
+        {
+            try
+            {
+                ItemImage itemImage = _itemImageService.GetById(id);
+
+                return Ok(itemImage);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Item is null");
+            }
+        }
+
+        private byte[] GetImage(string sBase64String)
+        {
+            byte[] bytes = null;
+            if (!string.IsNullOrEmpty(sBase64String))
+            {
+                bytes = Convert.FromBase64String(sBase64String);
+            }
+            return bytes;
         }
     }
 }

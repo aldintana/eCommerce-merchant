@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 
 namespace Core.Services
@@ -31,6 +32,16 @@ namespace Core.Services
                 _context.SaveChanges();
                 return itemImage;
             }
+        }
+
+        public List<ItemImage> GetAll(int itemId)
+        {
+            return _context.ItemImage.Where(x => x.ItemID == itemId).ToList();
+        }
+
+        public ItemImage GetById(int itemId)
+        {
+            return _context.ItemImage.First(x => x.ItemID == itemId);
         }
     }
 }
