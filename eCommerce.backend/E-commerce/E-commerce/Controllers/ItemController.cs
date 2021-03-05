@@ -132,7 +132,19 @@ namespace E_commerce.Controllers
                 return BadRequest("Item is null");
             }
         }
-
+        [HttpGet("Images")]
+        public IActionResult GetImages()
+        {
+            try
+            {
+                List<ItemImage> list = _itemImageService.GetAll();
+                return Ok(list);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Images not found");
+            }
+        }
         //slika
         [HttpGet("Image/{id}")]
         public IActionResult GetItemImage(int id)

@@ -39,6 +39,11 @@ namespace Core.Services
             return _context.ItemImage.Where(x => x.ItemID == itemId).ToList();
         }
 
+        public List<ItemImage> GetAll()
+        {
+            return _context.ItemImage.ToList();
+        }
+
         public ItemImage GetById(int itemId)
         {
             return _context.ItemImage.First(x => x.ItemID == itemId);

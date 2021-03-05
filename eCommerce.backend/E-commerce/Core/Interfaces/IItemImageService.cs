@@ -11,5 +11,6 @@ namespace Core.Interfaces
         ItemImage Add(IFormFile file, int itemId);
         ItemImage GetById(int itemId);
         List<ItemImage> GetAll(int itemId);
+        List<ItemImage> GetAll();
     }
 }
