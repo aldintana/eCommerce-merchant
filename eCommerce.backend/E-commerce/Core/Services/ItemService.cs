@@ -41,6 +41,12 @@ namespace Core.Services
         public void DeleteItem(int id)
         {
             var item = _context.Item.First(x => x.ID == id);
+            var list = _context.ItemImage.Where(x => x.ItemID == item.ID).ToList();
+            foreach (var x in list)
+            {
+                _context.ItemImage.Remove(x);
+                _context.SaveChanges();
+            }
             _context.Item.Remove(item);
             _context.SaveChanges();
         }

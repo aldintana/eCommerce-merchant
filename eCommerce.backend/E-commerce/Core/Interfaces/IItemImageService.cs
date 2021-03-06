@@ -1,4 +1,5 @@
 ﻿using Data.EntityModels;
+using Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -12,5 +13,6 @@ namespace Core.Interfaces
         ItemImage GetById(int itemId);
         List<ItemImage> GetAll(int itemId);
         List<ItemImage> GetAll();
+        void Delete(byte[] image, int itemId);
     }
 }

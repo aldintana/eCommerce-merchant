@@ -102,13 +102,28 @@ namespace E_commerce.Controllers
         //itemImage part
 
         [HttpPost("Image")]
-        public IActionResult Add(ItemImageVM itemImageVM)
+        public IActionResult Add([FromForm] ItemImageVM itemImageVM)
         {
             try
             {
                 if (itemImageVM.Image.Length <= 0)
                     return BadRequest("Image is null");
                 var newItemImage = _itemImageService.Add(itemImageVM.Image, itemImageVM.ItemID);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Item is null");
+            }
+        }
+        [HttpDelete("Image")]
+        public IActionResult Delete([FromForm] ItemImageDeleteVM itemImageDeleteVM)
+        {
+            try
+            {
+                if (itemImageDeleteVM.Image.Length <= 0)
+                    return BadRequest("Image is null");
+                _itemImageService.Delete(itemImageDeleteVM.Image, itemImageDeleteVM.ItemID);
                 return Ok();
             }
             catch (Exception ex)

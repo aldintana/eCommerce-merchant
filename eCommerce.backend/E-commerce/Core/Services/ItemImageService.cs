@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Data.DbContext;
 using Data.EntityModels;
+using Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,14 @@ namespace Core.Services
                 _context.SaveChanges();
                 return itemImage;
             }
+        }
+
+        public void Delete(byte[] image, int itemId)
+        {
+            var itemImage = _context.ItemImage.First(x => x.ItemID == itemId
+              && x.Image == image);
+            _context.ItemImage.Remove(itemImage);
+
         }
 
         public List<ItemImage> GetAll(int itemId)
