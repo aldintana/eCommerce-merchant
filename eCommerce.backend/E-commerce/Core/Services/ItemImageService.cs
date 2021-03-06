@@ -35,12 +35,11 @@ namespace Core.Services
             }
         }
 
-        public void Delete(byte[] image, int itemId)
+        public void Delete(int itemImageId)
         {
-            var itemImage = _context.ItemImage.First(x => x.ItemID == itemId
-              && x.Image == image);
+            var itemImage = _context.ItemImage.First(x => x.ID==itemImageId);
             _context.ItemImage.Remove(itemImage);
-
+            _context.SaveChanges();
         }
 
         public List<ItemImage> GetAll(int itemId)

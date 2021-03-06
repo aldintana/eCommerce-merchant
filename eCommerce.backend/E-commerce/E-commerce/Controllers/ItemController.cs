@@ -116,14 +116,12 @@ namespace E_commerce.Controllers
                 return BadRequest("Item is null");
             }
         }
-        [HttpDelete("Image")]
-        public IActionResult Delete([FromForm] ItemImageDeleteVM itemImageDeleteVM)
+        [HttpDelete("Image/{id}")]
+        public IActionResult DeleteImage(int id)
         {
             try
-            {
-                if (itemImageDeleteVM.Image.Length <= 0)
-                    return BadRequest("Image is null");
-                _itemImageService.Delete(itemImageDeleteVM.Image, itemImageDeleteVM.ItemID);
+            {                
+                _itemImageService.Delete(id);
                 return Ok();
             }
             catch (Exception ex)

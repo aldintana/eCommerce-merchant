@@ -13,6 +13,6 @@ namespace Core.Interfaces
         ItemImage GetById(int itemId);
         List<ItemImage> GetAll(int itemId);
         List<ItemImage> GetAll();
-        void Delete(byte[] image, int itemId);
+        void Delete(int itemImageId);
     }
 }
