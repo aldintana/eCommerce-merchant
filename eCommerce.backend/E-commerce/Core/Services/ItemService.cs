@@ -14,13 +14,12 @@ namespace Core.Services
     {
         private E_commerceDB _context;
         private IItemCostHistoryService _itemCostHistoryService;
-        private Account _user;
-        public ItemService(E_commerceDB context, IItemCostHistoryService itemCostHistoryService,
-            IHttpContextAccessor httpContextAccessor)
+
+        public ItemService(E_commerceDB context, IItemCostHistoryService itemCostHistoryService)
         {
             _context = context;
             _itemCostHistoryService = itemCostHistoryService;
-            _user = _context.Account.First(x => x.UserName == httpContextAccessor.HttpContext.User.Identity.Name);
+            
         }
         public Item AddItem(Item item)
         {

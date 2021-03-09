@@ -79,6 +79,7 @@ namespace E_commerce
             services.AddTransient<IItemCostHistoryService, ItemCostHistoryService>();
             services.AddTransient<IGenderSubCategoryService, GenderSubCategoryService>();
             services.AddTransient<IItemImageService, ItemImageService>();
+            services.AddTransient<IAccountService, AccountService>();
 
             services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
 

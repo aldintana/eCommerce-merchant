@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Core.Interfaces;
 using Data.EntityModels;
 using Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -25,16 +26,17 @@ namespace E_commerce.Controllers
         private IEmployeeService _employeeService;
         private readonly IEmailSender _emailSender;
         private IConfiguration _configuration;
+        private IAccountService _accountService;
         public AccountController(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager,
             IEmployeeService employeeService, IEmailSender emailSender, 
-            IConfiguration configuration)
+            IConfiguration configuration, IAccountService accountService)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            
             _employeeService = employeeService;
             _emailSender = emailSender;
             _configuration = configuration;
+            _accountService = accountService;
         }
         [HttpPost("Register")]
         public async Task<IActionResult> RegisterAsync([FromBody] RegisterVM model)
@@ -132,6 +134,25 @@ namespace E_commerce.Controllers
         //    await _signInManager.SignOutAsync();
         //    return Ok("User logged out");
         //}
+
+
+        [HttpPost("ResetPassword")]
+        [Authorize]
+        public async Task<IActionResult> ResetPassword([FromBody] ResetPasswordVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                var result = await _accountService.ResetPasswordAsync(model);
+
+                if (result== "Password has been reset successfully!")
+                    return Ok(result);
+
+                return BadRequest(result);
+            }
+
+            return BadRequest("Some properties are not valid");
+        }
+
 
         private async Task SendPasswordAsync(string email, string password, string username)
         {
