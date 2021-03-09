@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Core.Interfaces;
 using Data.EntityModels;
 using Data.ViewModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;

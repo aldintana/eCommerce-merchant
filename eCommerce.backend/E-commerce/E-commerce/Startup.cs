@@ -21,6 +21,7 @@ using static Core.Services.EmailSender;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace E_commerce
 {
@@ -78,6 +79,9 @@ namespace E_commerce
             services.AddTransient<IItemCostHistoryService, ItemCostHistoryService>();
             services.AddTransient<IGenderSubCategoryService, GenderSubCategoryService>();
             services.AddTransient<IItemImageService, ItemImageService>();
+
+            services.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
+
             services.AddCors(options =>
             {
                 options.AddPolicy("Policy",

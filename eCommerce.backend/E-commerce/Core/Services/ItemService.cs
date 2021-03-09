@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Data.DbContext;
 using Data.EntityModels;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -13,10 +14,13 @@ namespace Core.Services
     {
         private E_commerceDB _context;
         private IItemCostHistoryService _itemCostHistoryService;
-        public ItemService(E_commerceDB context, IItemCostHistoryService itemCostHistoryService)
+        private Account _user;
+        public ItemService(E_commerceDB context, IItemCostHistoryService itemCostHistoryService,
+            IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _itemCostHistoryService = itemCostHistoryService;
+            _user = _context.Account.First(x => x.UserName == httpContextAccessor.HttpContext.User.Identity.Name);
         }
         public Item AddItem(Item item)
         {

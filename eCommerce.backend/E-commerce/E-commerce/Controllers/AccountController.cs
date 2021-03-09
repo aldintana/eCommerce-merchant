@@ -21,18 +21,17 @@ namespace E_commerce.Controllers
     public class AccountController : ControllerBase
     {
         private UserManager<Account> _userManager;
-        private RoleManager<IdentityRole> _roleManager;
-        private SignInManager<Account> _signInManager;
+        private RoleManager<IdentityRole> _roleManager;        
         private IEmployeeService _employeeService;
         private readonly IEmailSender _emailSender;
         private IConfiguration _configuration;
         public AccountController(UserManager<Account> userManager, RoleManager<IdentityRole> roleManager,
-            SignInManager<Account> signInManager, IEmployeeService employeeService, IEmailSender emailSender, 
+            IEmployeeService employeeService, IEmailSender emailSender, 
             IConfiguration configuration)
         {
             _userManager = userManager;
             _roleManager = roleManager;
-            _signInManager = signInManager;
+            
             _employeeService = employeeService;
             _emailSender = emailSender;
             _configuration = configuration;
@@ -63,7 +62,7 @@ namespace E_commerce.Controllers
                     if(!roleResult.Succeeded)
                         throw new NullReferenceException("Role is not good");
 
-                    await SendPasswordAsync(model.Email, model.Password);
+                    await SendPasswordAsync(model.Email, model.Password, model.Email);
                     Employee employee = new Employee
                     {
                         Account = user,
@@ -104,9 +103,10 @@ namespace E_commerce.Controllers
                     role = roles[0];
                 var claims = new[]
                 {
-                    new Claim("Email", model.Email),
-                    new Claim("Id", user.Id),
-                    new Claim(ClaimTypes.Role, role)                 
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, user.UserName),
+                    new Claim(ClaimTypes.Role, role),
+                    new Claim("Role", role)
                 };
 
                 var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration["AuthSettings:Key"]));
@@ -133,11 +133,16 @@ namespace E_commerce.Controllers
         //    return Ok("User logged out");
         //}
 
-        private async Task SendPasswordAsync(string email, string lozinka)
+        private async Task SendPasswordAsync(string email, string password, string username)
         {
             string subject = "Password za korisnicki racun";
-            string htmlMessage = @"Poštovani,<br/><br/>" + "Password za Vaš korisnički račun je: <b>{0}</b><br/>" + "Molimo Vas da nakon prijave promijenite svoju lozinku." + "<br/><br/>" + "<br/>" + "Ecommerce";
-            htmlMessage = string.Format(htmlMessage, lozinka);
+            string htmlMessage = @"Poštovani,<br/><br/>" +
+                "Pristupni podaci za vaš korisnički račun su:<br/><br/>"+
+                "Username: <b>{1}</b> <br/> Password: <b>{0}</b> <br/> <br/> "+ 
+                "Molimo Vas da nakon prijave promijenite svoju lozinku." + 
+                "<br/><br/>" + "<br/>" + 
+                "Ecommerce";
+            htmlMessage = string.Format(htmlMessage, password, username);
             await _emailSender.SendEmail(email, subject, htmlMessage);
         }
     }
