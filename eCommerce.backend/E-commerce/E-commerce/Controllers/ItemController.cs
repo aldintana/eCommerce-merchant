@@ -69,7 +69,20 @@ namespace E_commerce.Controllers
             {
                 return BadRequest("Item is null");
             }
-        }        
+        }
+        //[HttpPost("create")]
+        //public IActionResult Create(Item item)
+        //{
+        //    try
+        //    {               
+        //        var newItem = _itemService.AddItem(item);               
+        //        return CreatedAtRoute("GetItemById", new { id = newItem.ID }, newItem);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return BadRequest("Item is null");
+        //    }
+        //}
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {

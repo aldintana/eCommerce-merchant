@@ -38,6 +38,26 @@ namespace Core.Services
                 });
                 _context.SaveChanges();
             }
+
+            var branches = _context.Branch.ToList();
+            var itemsizes = _context.ItemSize.Where(x=>x.ItemID==item.ID).ToList();
+            foreach (var x in branches)
+            {
+                foreach (var y in itemsizes)
+                {
+                    _context.Inventory.Add
+                    (
+                        new Inventory
+                        {
+                            BranchID=x.ID,
+                            ItemSizeID=y.ID,
+                            IsAvailable=false,
+                            Quantity=0
+                        }
+                    );
+                    _context.SaveChanges();
+                }
+            }
             return item;
         }
 
