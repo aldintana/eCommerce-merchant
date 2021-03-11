@@ -1,6 +1,7 @@
 ﻿using Core.Interfaces;
 using Data.DbContext;
 using Data.EntityModels;
+using Data.ViewModels;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -21,11 +22,24 @@ namespace Core.Services
             _user = _context.Account.First(x => x.UserName == httpContextAccessor
               .HttpContext.User.Identity.Name);
         }
-        public List<Inventory> Get()
+        public List<InventoryVM> Get()
         {
             Employee employee = _context.Employee.First(x => x.ID == _user.Id);
 
-            var list = _context.Inventory.Where(x => x.BranchID == employee.BranchID).ToList();
+            var list = _context.Inventory.Include(x => x.ItemSize).ThenInclude(x => x.Item)
+                .Include(x => x.ItemSize).ThenInclude(x => x.Size)
+                .Where(x=>x.BranchID==employee.BranchID)
+                .Select(
+                    x => new InventoryVM
+                    {
+                        ID = x.ID,
+                        IsAvailable = x.IsAvailable,
+                        BranchID = x.BranchID,
+                        ItemSizeID = x.ItemSizeID,
+                        Quantity = x.Quantity,
+                        ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name
+                    }
+                ).ToList();
             return list;
         }
 

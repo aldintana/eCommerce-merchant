@@ -36,7 +36,7 @@ namespace Core.Services
                 return "Password doesn't match its confirmation";
             var result = await _userManager.ChangePasswordAsync(_user, model.OldPassword, model.NewPassword);
             if (result.Succeeded)
-                return "Good";
+                return "Password has been reset successfully!";
             return "Something went wrong";
         }
     }

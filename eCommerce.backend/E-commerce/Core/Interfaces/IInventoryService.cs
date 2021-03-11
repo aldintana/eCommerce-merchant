@@ -1,4 +1,5 @@
 ﻿using Data.EntityModels;
+using Data.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,7 +8,7 @@ namespace Core.Interfaces
 {
     public interface IInventoryService
     {
-        List<Inventory> Get();
+        List<InventoryVM> Get();
         Inventory GetById(int id);
     }
 }
