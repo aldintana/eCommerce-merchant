@@ -46,7 +46,7 @@ namespace E_commerce.Controllers
         }
 
         [HttpGet]
-        [Authorize]
+        [Authorize (Roles = "Admin, Director, Warehouseman")]
         public IActionResult Get()
         {
             try
