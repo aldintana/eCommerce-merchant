@@ -8,7 +8,8 @@ namespace Data.ViewModels
     {
         public int ID { get; set; }
         public int Quantity { get; set; }
-        public bool IsAvailable { get; set; }                
+        public bool IsAvailable { get; set; }
+        public string BranchName { get; set; }
         public int BranchID { get; set; }       
         public int ItemSizeID { get; set; }
         public string ItemSizeName { get; set; }

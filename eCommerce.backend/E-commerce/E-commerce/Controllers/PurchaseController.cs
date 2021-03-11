@@ -44,5 +44,20 @@ namespace E_commerce.Controllers
             }
             return BadRequest("Something went wrong");
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult Get()
+        {
+            try
+            {
+                var result = _purchaseService.Get();
+                return Ok(result);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Something went wrong");
+            }
+        }
     }
 }

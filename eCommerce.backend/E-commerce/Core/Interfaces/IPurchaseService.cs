@@ -9,5 +9,6 @@ namespace Core.Interfaces
     public interface IPurchaseService
     {
         public Purchase Add(PurchaseAddVM purchaseAddVM);
+        public List<PurchaseGetVM> Get();
     }
 }

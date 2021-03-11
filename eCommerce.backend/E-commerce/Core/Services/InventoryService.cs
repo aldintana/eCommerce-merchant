@@ -29,6 +29,7 @@ namespace Core.Services
             {
                 var list = _context.Inventory.Include(x => x.ItemSize).ThenInclude(x => x.Item)
                 .Include(x => x.ItemSize).ThenInclude(x => x.Size)
+                .Include(x=> x.Branch)
                 .Where(x => x.BranchID == employee.BranchID)
                 .Select(
                     x => new InventoryVM
@@ -38,7 +39,8 @@ namespace Core.Services
                         BranchID = x.BranchID,
                         ItemSizeID = x.ItemSizeID,
                         Quantity = x.Quantity,
-                        ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name
+                        ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name,
+                        BranchName=x.Branch.Name
                     }
                 ).ToList();
                 return list;
@@ -47,8 +49,8 @@ namespace Core.Services
             {
                 var list = _context.Inventory.Include(x => x.ItemSize).ThenInclude(x => x.Item)
                 .Include(x => x.ItemSize).ThenInclude(x => x.Size)
-                .Where(x => x.BranchID == employee.BranchID && x.ItemSize.Item.Name.ToLower()
-                .Contains(search.ToLower()))
+                .Include(x=>x.Branch)
+                .Where(x => x.BranchID == employee.BranchID)
                 .Select(
                     x => new InventoryVM
                     {
@@ -57,10 +59,11 @@ namespace Core.Services
                         BranchID = x.BranchID,
                         ItemSizeID = x.ItemSizeID,
                         Quantity = x.Quantity,
-                        ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name
+                        ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name,
+                        BranchName=x.Branch.Name
                     }
                 ).ToList();
-                return list;
+                return list.Where(x=>x.ItemSizeName.ToLower().Contains(search.ToLower())).ToList();
             }
         }
 
