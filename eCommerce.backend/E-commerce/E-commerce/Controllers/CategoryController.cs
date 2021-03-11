@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Core.Interfaces;
 using Data.EntityModels;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
@@ -47,6 +48,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(Category category)
         {
             try
@@ -60,6 +62,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             try
@@ -73,6 +76,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update([FromBody] Category category)
         {
             try

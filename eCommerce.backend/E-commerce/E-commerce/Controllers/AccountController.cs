@@ -103,6 +103,9 @@ namespace E_commerce.Controllers
                 string role="";
                 if (roles.Count != 0)
                     role = roles[0];
+                if(role=="Customer")
+                    return BadRequest("You dont have permission");
+
                 var claims = new[]
                 {
                     new Claim(ClaimTypes.Email, user.Email),

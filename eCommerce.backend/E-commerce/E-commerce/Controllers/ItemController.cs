@@ -47,6 +47,7 @@ namespace E_commerce.Controllers
            
         }
         [HttpPost]
+        [Authorize ( Roles = "Admin")]
         public IActionResult Create([FromForm]ItemVM itemVM)
         {
             try
@@ -84,6 +85,7 @@ namespace E_commerce.Controllers
         //    }
         //}
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             try
@@ -98,6 +100,7 @@ namespace E_commerce.Controllers
             
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update([FromBody] Item item)
         {
             try
@@ -116,6 +119,7 @@ namespace E_commerce.Controllers
         //itemImage part
 
         [HttpPost("Image")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Add([FromForm] ItemImageVM itemImageVM)
         {
             try
@@ -131,6 +135,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpDelete("Image/{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult DeleteImage(int id)
         {
             try

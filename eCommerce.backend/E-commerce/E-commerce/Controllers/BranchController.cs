@@ -48,6 +48,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpPost]
+        [Authorize(Roles = "Admin")]
         public IActionResult Create(Branch branch)
         {
             try
@@ -61,6 +62,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpDelete("{id}")]
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             try
@@ -74,6 +76,7 @@ namespace E_commerce.Controllers
             }
         }
         [HttpPut]
+        [Authorize(Roles = "Admin")]
         public IActionResult Update([FromBody] Branch branch)
         {
             try
