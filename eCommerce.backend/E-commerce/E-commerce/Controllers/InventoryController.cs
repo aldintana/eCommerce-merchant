@@ -38,5 +38,20 @@ namespace E_commerce.Controllers
             }
             
         }
+
+
+        [HttpGet("{name}", Name = "GetInventoryByName")]
+        [Authorize]
+        public IActionResult GetByName(string name = null)
+        {
+            try
+            {
+                return Ok(_inventoryService.Get(name));
+            }
+            catch (Exception ex)
+            {
+                return BadRequest("Branch not found");
+            }
+        }
     }
 }

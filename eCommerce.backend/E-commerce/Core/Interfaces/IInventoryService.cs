@@ -8,7 +8,7 @@ namespace Core.Interfaces
 {
     public interface IInventoryService
     {
-        List<InventoryVM> Get();
+        List<InventoryVM> Get(string search=null);
         Inventory GetById(int id);
     }
 }

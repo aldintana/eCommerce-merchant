@@ -74,8 +74,8 @@ namespace E_commerce.Controllers
         //public IActionResult Create(Item item)
         //{
         //    try
-        //    {               
-        //        var newItem = _itemService.AddItem(item);               
+        //    {
+        //        var newItem = _itemService.AddItem(item);
         //        return CreatedAtRoute("GetItemById", new { id = newItem.ID }, newItem);
         //    }
         //    catch (Exception ex)

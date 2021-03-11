@@ -22,13 +22,14 @@ namespace Core.Services
             _user = _context.Account.First(x => x.UserName == httpContextAccessor
               .HttpContext.User.Identity.Name);
         }
-        public List<InventoryVM> Get()
+        public List<InventoryVM> Get(string search=null)
         {
             Employee employee = _context.Employee.First(x => x.ID == _user.Id);
-
-            var list = _context.Inventory.Include(x => x.ItemSize).ThenInclude(x => x.Item)
+            if(String.IsNullOrWhiteSpace(search))
+            {
+                var list = _context.Inventory.Include(x => x.ItemSize).ThenInclude(x => x.Item)
                 .Include(x => x.ItemSize).ThenInclude(x => x.Size)
-                .Where(x=>x.BranchID==employee.BranchID)
+                .Where(x => x.BranchID == employee.BranchID)
                 .Select(
                     x => new InventoryVM
                     {
@@ -40,7 +41,27 @@ namespace Core.Services
                         ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name
                     }
                 ).ToList();
-            return list;
+                return list;
+            }
+            else
+            {
+                var list = _context.Inventory.Include(x => x.ItemSize).ThenInclude(x => x.Item)
+                .Include(x => x.ItemSize).ThenInclude(x => x.Size)
+                .Where(x => x.BranchID == employee.BranchID && x.ItemSize.Item.Name.ToLower()
+                .Contains(search.ToLower()))
+                .Select(
+                    x => new InventoryVM
+                    {
+                        ID = x.ID,
+                        IsAvailable = x.IsAvailable,
+                        BranchID = x.BranchID,
+                        ItemSizeID = x.ItemSizeID,
+                        Quantity = x.Quantity,
+                        ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name
+                    }
+                ).ToList();
+                return list;
+            }
         }
 
         public Inventory GetById(int id)
