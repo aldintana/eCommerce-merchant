@@ -82,6 +82,7 @@ namespace E_commerce
             services.AddTransient<IAccountService, AccountService>();
             services.AddTransient<IPurchaseService, PurchaseService>();
             services.AddTransient<IInventoryService, InventoryService>();
+            services.AddTransient<IForgetPasswordLoggerService, ForgetPasswordLoggerService>();
 
 
 

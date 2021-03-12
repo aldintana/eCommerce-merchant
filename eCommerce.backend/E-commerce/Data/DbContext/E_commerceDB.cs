@@ -23,6 +23,7 @@ namespace Data.DbContext
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Employee> Employee { get; set; }
         public DbSet<Friend> Friend { get; set; }
+        public DbSet<ForgetPasswordLogger> ForgetPasswordLogger { get; set; }
         public DbSet<GenderCategory> GenderCategory { get; set; }
         public DbSet<GenderSubCategory> GenderSubCategory { get; set; }
         public DbSet<HistoryOfPayments> HistoryOfPayments { get; set; }

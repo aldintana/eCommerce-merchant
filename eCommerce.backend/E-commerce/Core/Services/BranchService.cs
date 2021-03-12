@@ -19,6 +19,20 @@ namespace Core.Services
         {
             _context.Branch.Add(branch);
             _context.SaveChanges();
+
+            var list = _context.ItemSize.ToList();
+            foreach (var x in list)
+            {
+                Inventory inventory = new Inventory
+                {
+                    BranchID = branch.ID,
+                    IsAvailable = false,
+                    ItemSizeID = x.ID,
+                    Quantity = 0
+                };
+                _context.Inventory.Add(inventory);
+                _context.SaveChanges();
+            }
             return branch;
         }
 
