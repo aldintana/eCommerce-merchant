@@ -32,5 +32,5 @@ C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.pdb
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.genruntimeconfig.cache
-C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csproj.CoreCompileInputs.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\Data\obj\Debug\netcoreapp3.1\Data.csprojAssemblyReference.cache
