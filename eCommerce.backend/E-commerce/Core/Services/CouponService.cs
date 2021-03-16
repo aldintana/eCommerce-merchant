@@ -40,6 +40,7 @@ namespace Core.Services
                 .Select(
                 x => new CouponGetVM
                 {
+                    Id=x.ID,
                     Code = x.Code,
                     ExpiredDate = x.ExpiredDate.ToString("dd.MM.yyyy."),
                     Value=$"{x.Value * 100}%" 

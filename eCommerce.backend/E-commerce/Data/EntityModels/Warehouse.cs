@@ -12,6 +12,7 @@ namespace Data.EntityModels
         public int Income { get; set; }
         public int Sold { get; set; }
         public int CurrentBalance { get; set; }
+        public DateTime Date { get; set; }
         [ForeignKey(nameof(ItemSizeID))]
         public virtual ItemSize ItemSize { get; set; }
         public int ItemSizeID { get; set; }
