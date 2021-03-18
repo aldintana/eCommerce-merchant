@@ -181,3 +181,9 @@ C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerc
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.csproj.CoreCompileInputs.cache
 C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\obj\Debug\netcoreapp3.1\E-commerce.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\ClosedXML.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\DocumentFormat.OpenXml.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\ExcelNumberFormat.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\System.IO.Packaging.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.DotNet.PlatformAbstractions.dll
+C:\Users\Aldin\Desktop\eCommerce merchant\eCommerce.backend\E-commerce\E-commerce\bin\Debug\netcoreapp3.1\Microsoft.Extensions.DependencyModel.dll

@@ -12,6 +12,7 @@ namespace Data.EntityModels
         public int CardNumber { get; set; }
         public int ExpDate { get; set; }
         public string Expyear { get; set; }
+        public string Cvc { get; set; }
         [ForeignKey(nameof(CustomerID))]
         public Customer Customer { get; set; }
         public string CustomerID { get; set; }

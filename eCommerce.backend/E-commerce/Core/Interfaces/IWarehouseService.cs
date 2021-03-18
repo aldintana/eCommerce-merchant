@@ -1,7 +1,10 @@
 ﻿using Data.ViewModels;
+using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
+
 using System.Text;
+
 
 namespace Core.Interfaces
 {
@@ -9,5 +12,8 @@ namespace Core.Interfaces
     {
         void Create();
         List<WarehouseGetVM> Get(string Date=null);
+        IEnumerable<string> GetDates();
+        List<WarehouseReportVM> GetReport(string date);
+
     }
 }
