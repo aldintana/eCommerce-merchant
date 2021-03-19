@@ -32,21 +32,50 @@ namespace Core.Services
         public void Create()
         {
             Employee employee = _context.Employee.First(x => x.ID == _user.Id);
-
+            DateTime lastDate = _context.WarehouseLog.Where(x => x.BranchID == employee.BranchID)
+                .OrderByDescending(x => x.Date)
+                .Select(x => x.Date)
+                .FirstOrDefault();
+            
+            bool exist=false;
+            if (lastDate != null)
+                exist = true;
+            if(lastDate.Date==DateTime.Today.Date)
+            {
+                throw new Exception("Limit");
+            }
             var listItemSize = _context.ItemSize.ToList();
             foreach (var item in listItemSize)
             {
                 int currentBalance = _context.Inventory.Where(x => x.ItemSizeID == item.ID && x.BranchID == employee.BranchID)
                     .Select(x => x.Quantity).FirstOrDefault();
-                int income = _context.Purchase.Where(x => x.ItemSizeID == item.ID &&
-                x.BranchID == employee.BranchID && x.Date.Date == DateTime.Now.Date)
-                    .Select(x => x.Quantity).Sum();
+                int income = 0;
                 int sold = 0;
-                int sold2 = _context.Order
-                    .Include(x => x.ShoppingCart)
-                    .Where(x => x.ItemSizeID == item.ID && x.ShoppingCart.BranchID == employee.BranchID
-                    && x.Date.Date == DateTime.Now.Date
-                    ).Select(x => x.Quantity).Sum();
+                int sold2 = 0;
+                if(!exist)
+                {
+                    income = _context.Purchase.Where(x => x.ItemSizeID == item.ID &&
+                    x.BranchID == employee.BranchID)
+                    .Select(x => x.Quantity).Sum();
+                    sold = 0;
+                    sold2 = _context.Order
+                        .Include(x => x.ShoppingCart)
+                        .Where(x => x.ItemSizeID == item.ID && x.ShoppingCart.BranchID == employee.BranchID)
+                        .Select(x => x.Quantity).Sum();
+                }
+                else
+                {
+                    income = _context.Purchase.Where(x => x.ItemSizeID == item.ID &&
+                    x.BranchID == employee.BranchID && x.Date > lastDate)
+                    .Select(x => x.Quantity).Sum();
+                    sold = 0;
+                    sold2 = _context.Order
+                        .Include(x => x.ShoppingCart)
+                        .Where(x => x.ItemSizeID == item.ID && x.ShoppingCart.BranchID == employee.BranchID
+                        && x.Date>lastDate)
+                        .Select(x => x.Quantity).Sum();
+                }
+
                 var previous = _context.Warehouse.Where(x => x.ItemSizeID == item.ID && x.BranchID == employee.BranchID)
                     .OrderBy(x => x.Date).FirstOrDefault();
                 int previousBalance = 0;
@@ -68,8 +97,14 @@ namespace Core.Services
                 };
                 _context.Warehouse.Add(warehouse);
                 _context.SaveChanges();
-
             }
+            WarehouseLog warehouseLog = new WarehouseLog
+            {
+                BranchID = employee.BranchID,
+                Date = DateTime.Now
+            };
+            _context.WarehouseLog.Add(warehouseLog);
+            _context.SaveChanges();
         }
 
         public List<WarehouseGetVM> Get(string Date = null)
