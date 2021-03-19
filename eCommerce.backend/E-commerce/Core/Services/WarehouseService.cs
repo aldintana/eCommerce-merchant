@@ -90,7 +90,7 @@ namespace Core.Services
                     BranchID = employee.BranchID,
                     CurrentBalance = currentBalance,
                     Income = income,
-                    Sold = sold,
+                    Sold = sold2,
                     ItemSizeID = item.ID,
                     Date = DateTime.Now,
                     PreviousBalance = previousBalance
