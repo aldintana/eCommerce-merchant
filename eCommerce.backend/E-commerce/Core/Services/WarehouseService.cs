@@ -223,16 +223,42 @@ namespace Core.Services
             return list.Distinct();
         }
 
+        public List<WarehouseMonthReportVM> GetMonthReport(WarehouseMonthFilterVM filter)
+        {
+            DateTime filterDate = DateTime.ParseExact(filter.Date, "dd.MM.yyyy.", null);
+            var list = _context.Inventory
+                 .Include(x => x.Branch)
+                 .Include(x => x.ItemSize)
+                 .ThenInclude(x => x.Item)
+                 .Include(x => x.ItemSize)
+                 .ThenInclude(x => x.Size)
+                 .Where(x => x.BranchID == filter.BranchId)
+                 .Select
+                 (
+                     x => new WarehouseMonthReportVM
+                     {
+                         Branch = x.Branch.Name,
+                         ItemSizeName = x.ItemSize.Item.Name + " - " + x.ItemSize.Size.Name,
+                         Sold = _context.Warehouse.Where(y=>y.Date.Month==filterDate.Month
+                         && y.ItemSizeID==x.ItemSizeID && y.Date.Year==filterDate.Year)
+                         .Select(y => y.Sold).Sum()
+                     }
+                 ).ToList();
+
+            return list;
+        }
+
         public List<WarehouseReportVM> GetReport(string date)
         {
             DateTime filter = DateTime.ParseExact(date, "dd.MM.yyyy.", null);
+            Employee employee = _context.Employee.First(x => x.ID == _user.Id);
             var list = _context.Warehouse
                 .Include(x => x.Branch)
                 .Include(x => x.ItemSize)
                 .ThenInclude(x => x.Item)
                 .Include(x => x.ItemSize)
                 .ThenInclude(x => x.Size)
-                .Where(x => x.BranchID == 1 && x.Date.Date == filter.Date)
+                .Where(x => x.BranchID == employee.BranchID && x.Date.Date == filter.Date)
                 .Select
                 (
                     x => new WarehouseReportVM

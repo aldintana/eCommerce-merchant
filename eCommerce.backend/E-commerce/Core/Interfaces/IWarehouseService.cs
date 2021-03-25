@@ -14,6 +14,7 @@ namespace Core.Interfaces
         List<WarehouseGetVM> Get(string Date=null);
         IEnumerable<string> GetDates();
         List<WarehouseReportVM> GetReport(string date);
+        List<WarehouseMonthReportVM> GetMonthReport(WarehouseMonthFilterVM filter);
 
     }
 }

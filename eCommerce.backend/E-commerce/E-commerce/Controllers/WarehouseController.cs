@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using ClosedXML.Excel;
 using Core.Interfaces;
+using Data.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -107,6 +108,33 @@ namespace E_commerce.Controllers
                     var content = stream.ToArray();
                     return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
                         $"Report {date}.xlsx");
+                }
+            }
+        }
+
+        [HttpGet("excelmonth")]
+        public IActionResult ExcelMonth(WarehouseMonthFilterVM filterVM)
+        {
+            using (var workbook = new XLWorkbook())
+            {
+                var worksheet = workbook.Worksheets.Add($"Report {filterVM.Date.Substring(3)}");
+                worksheet.Cell(1, 1).Value = $"Report for {filterVM.Date.Substring(3)}";
+                var list = _warehouseService.GetMonthReport(filterVM);
+                worksheet.Column("A").Width = 30;
+                worksheet.Column("B").Width = 30;
+                worksheet.Column("C").Width = 10;
+                worksheet.Cell(1, 1).Style.Alignment.Horizontal = XLAlignmentHorizontalValues.Center;
+                worksheet.Cell(1, 1).Style.Font.Bold = true;
+                worksheet.Range("A1:C1").Merge();
+                worksheet.Cell(2, 1).InsertTable(list);
+
+
+                using (var stream = new MemoryStream())
+                {
+                    workbook.SaveAs(stream);
+                    var content = stream.ToArray();
+                    return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+                        $"Report {filterVM.Date.Substring(3)}.xlsx");
                 }
             }
         }
