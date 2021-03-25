@@ -113,10 +113,15 @@ namespace E_commerce.Controllers
         }
 
         [HttpGet("excelmonth")]
-        public IActionResult ExcelMonth(WarehouseMonthFilterVM filterVM)
+        public IActionResult ExcelMonth(string Date, int BranchId)
         {
             using (var workbook = new XLWorkbook())
             {
+                WarehouseMonthFilterVM filterVM = new WarehouseMonthFilterVM
+                {
+                    Date = Date,
+                    BranchId = BranchId
+                };
                 var worksheet = workbook.Worksheets.Add($"Report {filterVM.Date.Substring(3)}");
                 worksheet.Cell(1, 1).Value = $"Report for {filterVM.Date.Substring(3)}";
                 var list = _warehouseService.GetMonthReport(filterVM);
