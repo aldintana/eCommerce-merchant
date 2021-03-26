@@ -11,7 +11,7 @@ namespace Core.Interfaces
     public interface IWarehouseService
     {
         void Create();
-        List<WarehouseGetVM> Get(string Date=null);
+        List<WarehouseGetVM> Get(string Date=null, string Name=null);
         IEnumerable<string> GetDates();
         List<WarehouseReportVM> GetReport(string date);
         List<WarehouseMonthReportVM> GetMonthReport(WarehouseMonthFilterVM filter);

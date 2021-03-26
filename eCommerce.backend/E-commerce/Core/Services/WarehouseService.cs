@@ -107,7 +107,7 @@ namespace Core.Services
             _context.SaveChanges();
         }
 
-        public List<WarehouseGetVM> Get(string Date = null)
+        public List<WarehouseGetVM> Get(string Date = null, string Name=null)
         {
             var roles = _userManager.GetRolesAsync(_user);
             string role = "";
@@ -137,6 +137,11 @@ namespace Core.Services
                         Sold = x.Sold
                     }
                     ).ToList();
+
+                    if (!string.IsNullOrWhiteSpace(Name))
+                    {
+                        list = list.Where(x => x.ItemSize.ToLower().Contains(Name.ToLower())).ToList();
+                    }
                     return list;
                 }
                 else
@@ -159,6 +164,11 @@ namespace Core.Services
                         Sold = x.Sold
                     }
                     ).ToList();
+
+                    if (!string.IsNullOrWhiteSpace(Name))
+                    {
+                        list = list.Where(x => x.ItemSize.ToLower().Contains(Name.ToLower())).ToList();
+                    }
                     return list;
                 }
             }
@@ -184,6 +194,10 @@ namespace Core.Services
                         Sold = x.Sold
                     }
                     ).ToList();
+                    if (!string.IsNullOrWhiteSpace(Name))
+                    {
+                        list = list.Where(x => x.ItemSize.ToLower().Contains(Name.ToLower())).ToList();
+                    }
                     return list;
                 }
                 else
@@ -204,6 +218,10 @@ namespace Core.Services
                         Sold = x.Sold
                     }
                     ).ToList();
+                    if (!string.IsNullOrWhiteSpace(Name))
+                    {
+                        list = list.Where(x => x.ItemSize.ToLower().Contains(Name.ToLower())).ToList();
+                    }
                     return list;
                 }
 

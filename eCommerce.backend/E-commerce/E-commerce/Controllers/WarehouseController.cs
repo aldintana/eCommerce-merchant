@@ -52,12 +52,12 @@ namespace E_commerce.Controllers
             }
         }
         [Authorize(Roles = "Director, Admin")]
-        [HttpGet("{date}", Name = "GetWarehouseByDate")]
-        public IActionResult Get(string date=null)
+        [HttpGet("filter")]
+        public IActionResult GetFilter(string date=null, string name=null)
         {
             try
             {
-                var result = _warehouseService.Get(date);
+                var result = _warehouseService.Get(date, name);
                 return Ok(result);
             }
             catch (Exception ex)
@@ -79,6 +79,7 @@ namespace E_commerce.Controllers
                 return BadRequest("Something went wrong");
             }
         }
+        [Authorize(Roles ="Director")]
         [HttpGet("excel/{date}")]
         public IActionResult Excel(string date)
         {
@@ -111,7 +112,7 @@ namespace E_commerce.Controllers
                 }
             }
         }
-
+        [Authorize(Roles = "Admin")]
         [HttpGet("excelmonth")]
         public IActionResult ExcelMonth(string Date, int BranchId)
         {
