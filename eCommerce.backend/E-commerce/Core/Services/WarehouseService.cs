@@ -176,7 +176,7 @@ namespace Core.Services
             {
                 if (!string.IsNullOrWhiteSpace(Date))
                 {
-                    DateTime filter = Convert.ToDateTime(Date);
+                    DateTime filter = DateTime.ParseExact(Date, "dd.MM.yyyy.", null);
                     var list = _context.Warehouse
                     .Include(x => x.Branch).Include(x => x.ItemSize).ThenInclude(x => x.Item)
                     .Include(x => x.ItemSize).ThenInclude(x => x.Size)
@@ -243,7 +243,13 @@ namespace Core.Services
 
         public List<WarehouseMonthReportVM> GetMonthReport(WarehouseMonthFilterVM filter)
         {
-            DateTime filterDate = DateTime.ParseExact(filter.Date, "dd.MM.yyyy.", null);
+            DateTime filterDate;
+            if(filter.Date.Length==11)
+                filterDate = DateTime.ParseExact(filter.Date, "dd.MM.yyyy.", null);
+            else
+            {
+                filterDate = DateTime.ParseExact(filter.Date, "MM.yyyy.", null);
+            }
             var list = _context.Inventory
                  .Include(x => x.Branch)
                  .Include(x => x.ItemSize)

@@ -123,8 +123,10 @@ namespace E_commerce.Controllers
                     Date = Date,
                     BranchId = BranchId
                 };
-                var worksheet = workbook.Worksheets.Add($"Report {filterVM.Date.Substring(3)}");
-                worksheet.Cell(1, 1).Value = $"Report for {filterVM.Date.Substring(3)}";
+                if (Date.Length == 11)
+                    Date = Date.Substring(3);
+                var worksheet = workbook.Worksheets.Add($"Report {Date}");
+                worksheet.Cell(1, 1).Value = $"Report for {Date}";
                 var list = _warehouseService.GetMonthReport(filterVM);
                 worksheet.Column("A").Width = 30;
                 worksheet.Column("B").Width = 30;
@@ -140,7 +142,7 @@ namespace E_commerce.Controllers
                     workbook.SaveAs(stream);
                     var content = stream.ToArray();
                     return File(content, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
-                        $"Report {filterVM.Date.Substring(3)}.xlsx");
+                        $"Report {Date}.xlsx");
                 }
             }
         }
